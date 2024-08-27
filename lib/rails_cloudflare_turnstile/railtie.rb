@@ -8,8 +8,10 @@ module RailsCloudflareTurnstile
       ActiveSupport.on_load(:action_view) do
         include RailsCloudflareTurnstile::ViewHelpers
       end
-
-      app.config.assets.precompile += %w[mock_cloudflare_turnstile_api.js turnstile-logo.svg]
+      
+      unless app.config.api_only
+        app.config.assets.precompile += %w[mock_cloudflare_turnstile_api.js turnstile-logo.svg]
+      end
     end
   end
 end
